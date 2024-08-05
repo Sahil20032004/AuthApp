@@ -5,8 +5,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object API_Service {
-    private const val BASE_URL = "https://authentication-ds6w.vercel.app/"
+object APIService {
+    private const val BASE_URL = "https://kotlin-auth.onrender.com/"
 
 
 

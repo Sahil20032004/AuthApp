@@ -24,30 +24,30 @@ class RegisterActivityViewModel(val authRepository: AuthRepository, val applicat
 
     fun getIsLoading(): LiveData<Boolean> = isLoading
     fun getErrorMessage(): LiveData<HashMap<String, String>> = errorMessage
-    fun getIsUniqueEmail(): LiveData<Boolean> = isUniqueEmail
+   // fun getIsUniqueEmail(): LiveData<Boolean> = isUniqueEmail
     fun getUser(): LiveData<User> = user
 
-    fun validateEmailAddress(body: ValidateEmailBody) {
-        viewModelScope.launch {
-            authRepository.validateEmailAddress(body).collect {
-                when (it) {
-                    is RequestStatus.Waiting -> {
-                        isLoading.value = true
-                    }
-
-                    is RequestStatus.Success -> {
-                        isLoading.value = false
-                        isUniqueEmail.value = it.data.isUnique
-                    }
-
-                    is RequestStatus.Error -> {
-                        isLoading.value = false
-                        errorMessage.value = it.message
-                    }
-                }
-            }
-        }
-    }
+//    fun validateEmailAddress(body: ValidateEmailBody) {
+//        viewModelScope.launch {
+//            authRepository.validateEmailAddress(body).collect {
+//                when (it) {
+//                    is RequestStatus.Waiting -> {
+//                        isLoading.value = true
+//                    }
+//
+//                    is RequestStatus.Success -> {
+//                        isLoading.value = false
+//                        isUniqueEmail.value = it.data.isUnique
+//                    }
+//
+//                    is RequestStatus.Error -> {
+//                        isLoading.value = false
+//                        errorMessage.value = it.message
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     fun registerUser(body: RegisterBody) {
         viewModelScope.launch {

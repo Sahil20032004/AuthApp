@@ -22,7 +22,7 @@ import com.example.authentcate.data.RegisterBody
 import com.example.authentcate.data.ValidateEmailBody
 import com.example.authentcate.databinding.ActivityRegisterBinding
 import com.example.authentcate.repository.AuthRepository
-import com.example.authentcate.utils.API_Service
+import com.example.authentcate.utils.APIService
 import com.example.authentcate.utils.VibrateView
 import com.example.authentcate.view_model.RegisterActivityModelFactory
 import com.example.authentcate.view_model.RegisterActivityViewModel
@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
         mBinding.registerBtn.setOnClickListener(this)
         mViewModel = ViewModelProvider(
             this,
-            RegisterActivityModelFactory(AuthRepository(API_Service.getService()), application)
+            RegisterActivityModelFactory(AuthRepository(APIService.getService()), application)
         ).get(RegisterActivityViewModel::class.java)
         setupObservers()
     }
@@ -57,26 +57,26 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
             mBinding.progressBar.isVisible = it
         }
 
-        mViewModel.getIsUniqueEmail().observe(this) {
-            if (validateEmail(false)) {
-                if (it) {
-                    mBinding.emailTil.apply {
-                        if (isErrorEnabled) isErrorEnabled = false
-                        setStartIconDrawable(R.drawable.check_circle_24)
-                        setStartIconTintList(ColorStateList.valueOf(Color.GREEN))
-                    }
-                } else {
-                    mBinding.emailTil.apply {
-                        if (startIconDrawable != null) startIconDrawable = null
-                        isErrorEnabled = true
-                        error = "Email is already in use"
-                    }
-                }
-            }
-        }
+//        mViewModel.getIsUniqueEmail().observe(this) {
+//            if (validateEmail(false)) {
+//                if (it) {
+//                    mBinding.emailTil.apply {
+//                        if (isErrorEnabled) isErrorEnabled = false
+//                        setStartIconDrawable(R.drawable.check_circle_24)
+//                        setStartIconTintList(ColorStateList.valueOf(Color.GREEN))
+//                    }
+//                } else {
+//                    mBinding.emailTil.apply {
+//                        if (startIconDrawable != null) startIconDrawable = null
+//                        isErrorEnabled = true
+//                        error = "Email is already in use"
+//                    }
+//                }
+//            }
+//        }
 
         mViewModel.getErrorMessage().observe(this) {
-            val fromErrorKeys = arrayOf("fullName", "email", "password")
+            val fromErrorKeys = arrayOf("fullName", "email", "password","confirmPassword")
             val message = StringBuilder()
             it.map { entry ->
                 if (fromErrorKeys.contains(entry.key)) {
@@ -101,6 +101,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
                                 error = entry.value
                             }
                         }
+
+
                     }
                 } else {
                     message.append(entry.value).append("\n")
@@ -253,9 +255,9 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener, View.OnFocus
                             mBinding.emailTil.isErrorEnabled = false
                         }
                     } else {
-                        if (validateEmail()) {
-                            mViewModel.validateEmailAddress(ValidateEmailBody(mBinding.emailEt.text!!.toString()))
-                        }
+//                        if (validateEmail()) {
+//                            mViewModel.validateEmailAddress(ValidateEmailBody(mBinding.emailEt.text!!.toString()))
+//                        }
                     }
                 }
 

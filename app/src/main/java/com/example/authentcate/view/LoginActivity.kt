@@ -15,7 +15,7 @@ import com.example.authentcate.R
 import com.example.authentcate.data.LoginBody
 import com.example.authentcate.databinding.ActivityLoginBinding
 import com.example.authentcate.repository.AuthRepository
-import com.example.authentcate.utils.API_Service
+import com.example.authentcate.utils.APIService
 import com.example.authentcate.utils.VibrateView
 import com.example.authentcate.view_model.LoginActivityViewModel
 import com.example.authentcate.view_model.LoginActivityViewModelFactory
@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
         mBinding.passwordEt.setOnKeyListener(this)
         mViewModel = ViewModelProvider(
             this,
-            LoginActivityViewModelFactory(AuthRepository(API_Service.getService()), application)
+            LoginActivityViewModelFactory(AuthRepository(APIService.getService()), application)
         )[LoginActivityViewModel::class.java]
         setContentView(mBinding.root)
         setupObservers()
