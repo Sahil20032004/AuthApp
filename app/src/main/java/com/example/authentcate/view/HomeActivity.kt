@@ -18,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
         val welcomeTextView: TextView = findViewById(R.id.welcomeTextView)
 
         // Set the welcome message
-        welcomeTextView.text = "Welcome to the Home Page!"
+        welcomeTextView.text = "Welcome to the Worldline!"
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

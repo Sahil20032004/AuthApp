@@ -10,4 +10,5 @@
     <string name="login_with_google_button">Login with Google</string>
     <string name="newUserInfo">If you are a new user? Click</string>
     <string name="register_button">Register</string>
+    <string name="welcome_to_the_worldline">Welcome to the Worldline!</string>
 </resources>
